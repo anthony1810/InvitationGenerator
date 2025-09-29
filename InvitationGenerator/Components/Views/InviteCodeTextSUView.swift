@@ -103,14 +103,3 @@ struct InviteCodeTextSUView: View {
         }
     }
 }
-
-//#Preview {
-//    InviteCodeTextSUView(
-//        inviteCode: "321232",
-//        onCopy: { code in
-//            print("Copied: \(code)")
-//        }
-//    )
-//}
-
-

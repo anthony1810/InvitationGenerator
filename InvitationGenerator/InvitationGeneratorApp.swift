@@ -11,7 +11,12 @@ import SwiftUI
 struct InvitationGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AddStudentSUView(
+                viewState: AddStudentSUViewState(),
+                viewModel: AddStudentSUViewModel(
+                    teacherService: MockTeacherService()
+                )
+            )
         }
     }
 }
