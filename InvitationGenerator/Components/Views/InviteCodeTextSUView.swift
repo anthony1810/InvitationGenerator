@@ -9,10 +9,6 @@ import Foundation
 import SwiftUI
 
 struct InviteCodeTextSUView: View {
-    
-    let inviteCode: String?
-    let onCopy: ((String) -> Void)?
-    
     @State var viewModel: InviteCodeTextViewModel
     
     enum ViewIdentifier: String {
@@ -26,7 +22,7 @@ struct InviteCodeTextSUView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            Button(action: copyCode) {
+            Button(action: viewModel.copyCode) {
                 mainContainerView()
                     .accessibilityIdentifier(ViewIdentifier.inviteCodeContainerView.rawValue)
             }
@@ -76,7 +72,7 @@ struct InviteCodeTextSUView: View {
     }
     
     func inviteCodeLabel() -> some View {
-        Text(inviteCode ?? "")
+        Text(viewModel.inviteCode ?? "")
             .font(.body)
             .foregroundStyle(.textPrimary)
     }
@@ -93,13 +89,5 @@ struct InviteCodeTextSUView: View {
             .foregroundStyle(Color.textSecondary)
             .transition(.opacity.animation(.easeInOut))
             .padding(.leading, 16)
-    }
-    
-    private func copyCode() {
-        guard let code = inviteCode, !code.isEmpty else { return }
-        onCopy?(code)
-        withAnimation {
-            viewModel.isCopied = true
-        }
     }
 }

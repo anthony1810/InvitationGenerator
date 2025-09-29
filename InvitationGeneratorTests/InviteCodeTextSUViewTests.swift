@@ -67,11 +67,13 @@ final class InviteCodeTextSUViewTests: XCTestCase {
     )
     -> (sut: InviteCodeTextSUView, viewModel: InviteCodeTextViewModel)
     {
-        let viewModel = InviteCodeTextViewModel()
+        let viewModel = InviteCodeTextViewModel(
+            inviteCode: inviteCode,
+            onCopy: onCopy
+        )
         
         let suView = InviteCodeTextSUView(
-            inviteCode: inviteCode,
-            onCopy: onCopy, viewModel: viewModel
+            viewModel: viewModel
         )
         
         return (suView, viewModel)

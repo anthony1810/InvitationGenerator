@@ -80,13 +80,14 @@ private extension AddStudentSUView {
                 .accessibilityIdentifier(ViewIdentifier.descriptionLabel.rawValue)
             
             InviteCodeTextSUView(
-                inviteCode: viewState.inviteCodeValue,
-                onCopy: { _ in
-                    Task {
-                    await viewModel.copyInviteCodeToClipboard()
-                }
-                },
-                viewModel: InviteCodeTextViewModel()
+                viewModel: InviteCodeTextViewModel(
+                    inviteCode: viewState.inviteCodeValue,
+                    onCopy: { _ in
+                        Task {
+                            await viewModel.copyInviteCodeToClipboard()
+                        }
+                    }
+                )
             )
         }
     }

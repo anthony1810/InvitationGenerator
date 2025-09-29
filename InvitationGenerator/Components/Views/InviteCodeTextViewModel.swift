@@ -12,9 +12,9 @@ import SwiftUI
 @Observable
 final class InviteCodeTextViewModel {
   var inviteCode: String?
-  var isCopied = false
+  private(set) var isCopied = false
   
-  var onCopy: ((String) -> Void)?
+  private var onCopy: ((String) -> Void)?
   
   init(inviteCode: String? = nil, onCopy: ((String) -> Void)? = nil) {
     self.inviteCode = inviteCode
