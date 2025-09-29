@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "B3504EBF-3B4E-4D5C-BE87-7F7620369932",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:InvitationGenerator.xcodeproj",
+      "identifier" : "924253862E8A3387002719FE",
+      "name" : "InvitationGenerator"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:InvitationGenerator.xcodeproj",
+        "identifier" : "924253932E8A3389002719FE",
+        "name" : "InvitationGeneratorTests"
+      }
+    }
+  ],
+  "version" : 1
+}

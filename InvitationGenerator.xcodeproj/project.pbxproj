@@ -31,6 +31,7 @@
 		924253872E8A3387002719FE /* InvitationGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvitationGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924253942E8A3389002719FE /* InvitationGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvitationGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9242539E2E8A3389002719FE /* InvitationGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvitationGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		924258322E8A8658002719FE /* InvitationGenerator.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = InvitationGenerator.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +81,7 @@
 		9242537E2E8A3387002719FE = {
 			isa = PBXGroup;
 			children = (
+				924258322E8A8658002719FE /* InvitationGenerator.xctestplan */,
 				924253892E8A3387002719FE /* InvitationGenerator */,
 				924253972E8A3389002719FE /* InvitationGeneratorTests */,
 				924253A12E8A3389002719FE /* InvitationGeneratorUITests */,
