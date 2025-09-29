@@ -59,26 +59,26 @@ struct InviteCodeTextSUView: View {
         }
         .padding()
         .background(viewModel.isCopied
-                    ? Color.secondary.opacity(0.1)
-                    : Color.gray
+                    ? Color.secondaryDefault.opacity(0.1)
+                    : Color.surfacesBackground2
         )
         .clipShape(RoundedRectangle(cornerRadius: 48))
         .overlay(
             RoundedRectangle(cornerRadius: 48)
-                .stroke(viewModel.isCopied ? Color.gray : Color.clear, lineWidth: 1)
+                .stroke(viewModel.isCopied ? Color.secondaryDefault : Color.clear, lineWidth: 1)
         )
     }
     
     func titleLabel() -> some View {
         Text(verbatim: "Student invite code")
             .font(.caption)
-            .foregroundStyle(Color.secondary)
+            .foregroundStyle(Color.textSecondary)
     }
     
     func inviteCodeLabel() -> some View {
         Text(inviteCode ?? "")
             .font(.body)
-            .foregroundStyle(.primary)
+            .foregroundStyle(.textPrimary)
     }
     
     func copyStatusIcon() -> some View {
@@ -90,7 +90,7 @@ struct InviteCodeTextSUView: View {
     private func copyCodeLabel() -> some View {
         Text(verbatim: "Code copied")
             .font(.caption)
-            .foregroundStyle(Color.secondary)
+            .foregroundStyle(Color.textSecondary)
             .transition(.opacity.animation(.easeInOut))
             .padding(.leading, 16)
     }

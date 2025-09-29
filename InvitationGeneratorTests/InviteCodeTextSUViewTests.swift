@@ -21,12 +21,12 @@ final class InviteCodeTextSUViewTests: XCTestCase {
         
         // Main Button
         let mainButton = try sut.getMainContainerView()
-        XCTAssertEqual(try backgroundColorFromView(mainButton), .gray, "Background")
+        XCTAssertEqual(try backgroundColorFromView(mainButton), .surfacesBackground2, "Background")
         
         // Title
         let titleLabel = try sut.getTitleLabel()
         XCTAssertEqual(try textFromLabel(titleLabel), "Student invite code")
-        XCTAssertEqual(try foregroundColorFromLabel(titleLabel), .secondary)
+        XCTAssertEqual(try foregroundColorFromLabel(titleLabel), .textSecondary)
         XCTAssertEqual(try fontFromLabel(titleLabel), .caption)
         
         // Code - should be empty initially
@@ -52,12 +52,12 @@ final class InviteCodeTextSUViewTests: XCTestCase {
     
         // Re-fetch the main button after state change
         let mainButton = try sut.getMainContainerView()
-          XCTAssertEqual(try backgroundColorFromView(mainButton), .secondary.opacity(0.1))
+          XCTAssertEqual(try backgroundColorFromView(mainButton), .secondaryDefault.opacity(0.1))
     
         // "Code Copied" label should now be visible
         let copiedLabel = try sut.getCopiedLabel()
         XCTAssertEqual(try textFromLabel(copiedLabel), "Code copied")
-          XCTAssertEqual(try foregroundColorFromLabel(copiedLabel), .secondary)
+          XCTAssertEqual(try foregroundColorFromLabel(copiedLabel), .textSecondary)
       }
     
     // MARK: - Helpers
