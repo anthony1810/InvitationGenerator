@@ -8,6 +8,6 @@ import Foundation
 
 struct MockTeacherService: TeacherServiceProtocol {
     func fetchInviteCode() async throws -> String {
-        String("1234567890".shuffled())
+        String("1234567890".shuffled().prefix(5))
     }
 }
