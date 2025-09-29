@@ -78,7 +78,7 @@ struct InviteCodeTextSUView: View {
     }
     
     func copyStatusIcon() -> some View {
-        Image(systemName: viewModel.isCopied ? "check" : "uncheck")
+        Image(viewModel.isCopied ? .checkedCopyIcon : .uncheckedCopyIcon)
             .resizable()
             .frame(width: 24, height: 24)
     }
