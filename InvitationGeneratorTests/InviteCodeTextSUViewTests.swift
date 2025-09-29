@@ -14,10 +14,9 @@ import ViewInspector
 
 @MainActor
 final class InviteCodeTextSUViewTests: XCTestCase {
-    
     // MARK: - Uncopied State Tests
     func test_uncopiedState_isProperlyConfigured() throws {
-        let (sut, _) = makeSUT()
+        let sut = makeUncopiedSUT()
         
         // Main Button
         let mainButton = try sut.getMainContainerView()
@@ -39,45 +38,56 @@ final class InviteCodeTextSUViewTests: XCTestCase {
     }
     
     // MARK: - Copied State Tests
-      func test_whenTapped_transitionsToCopiedState() async throws {
+    func test_whenTapped_transitionsToCopiedState() async throws {
         var copiedValue: String?
         let expectedInviteCode = "372366"
-        let (sut, viewModel) = makeSUT(inviteCode: expectedInviteCode) { code in
-          copiedValue = code
+        let sut = makeCopiedSUT(inviteCode: expectedInviteCode) { code in
+            copiedValue = code
         }
         try sut.getContainerButton().tap()
-    
+        
         XCTAssertEqual(copiedValue, expectedInviteCode)
-        XCTAssertEqual(viewModel.isCopied, true)
-    
+        XCTAssertEqual(sut.isCopied, true)
+        
         // Re-fetch the main button after state change
         let mainButton = try sut.getMainContainerView()
-          XCTAssertEqual(try backgroundColorFromView(mainButton), .secondaryDefault.opacity(0.1))
-    
+        XCTAssertEqual(try backgroundColorFromView(mainButton), .secondaryDefault.opacity(0.1))
+        
         // "Code Copied" label should now be visible
         let copiedLabel = try sut.getCopiedLabel()
         XCTAssertEqual(try textFromLabel(copiedLabel), "Code copied")
-          XCTAssertEqual(try foregroundColorFromLabel(copiedLabel), .textSecondary)
-      }
+        XCTAssertEqual(try foregroundColorFromLabel(copiedLabel), .textSecondary)
+    }
     
     // MARK: - Helpers
     private func makeSUT(
+        isCopiedOn: Bool,
         inviteCode: String? = nil,
         onCopy: SingleResult<String>? = nil
     )
-    -> (sut: InviteCodeTextSUView, viewModel: InviteCodeTextViewModel)
+    -> InviteCodeTextSUView
     {
-        let viewModel = InviteCodeTextViewModel(
-            inviteCode: inviteCode,
-            onCopy: onCopy
+        InviteCodeTextSUView(
+            isCopied: .constant(isCopiedOn),
+            inviteCode: inviteCode ?? "",
+            onCopy: { onCopy?($0) }
         )
-        
-        let suView = InviteCodeTextSUView(
-            viewModel: viewModel
-        )
-        
-        return (suView, viewModel)
     }
+    
+    private func makeCopiedSUT(
+        inviteCode: String? = nil,
+        onCopy: SingleResult<String>? = nil
+    ) -> InviteCodeTextSUView {
+        makeSUT(isCopiedOn: true, inviteCode: inviteCode, onCopy: onCopy)
+    }
+    
+    private func makeUncopiedSUT(
+        inviteCode: String? = nil,
+        onCopy: SingleResult<String>? = nil
+    ) -> InviteCodeTextSUView {
+        makeSUT(isCopiedOn: false, inviteCode: inviteCode, onCopy: onCopy)
+    }
+    
 }
 
 

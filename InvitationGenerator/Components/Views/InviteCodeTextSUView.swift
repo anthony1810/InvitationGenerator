@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 struct InviteCodeTextSUView: View {
-    @State var viewModel: InviteCodeTextViewModel
+    @Binding var isCopied: Bool
+    let inviteCode: String
+    let onCopy: SingleResult<String>
     
     enum ViewIdentifier: String {
         case inviteCodeButton
@@ -22,13 +24,16 @@ struct InviteCodeTextSUView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            Button(action: viewModel.copyCode) {
+            Button(action: {
+                onCopy(inviteCode)
+                isCopied = true
+            }) {
                 mainContainerView()
                     .accessibilityIdentifier(ViewIdentifier.inviteCodeContainerView.rawValue)
             }
             .accessibilityIdentifier(ViewIdentifier.inviteCodeButton.rawValue)
             
-            if viewModel.isCopied {
+            if isCopied {
                 HStack {
                     copyCodeLabel()
                         .accessibilityIdentifier(ViewIdentifier.inviteCodeCopiedLabel.rawValue)
@@ -54,14 +59,14 @@ struct InviteCodeTextSUView: View {
                 .accessibilityIdentifier(ViewIdentifier.inviteCodeIconImage.rawValue)
         }
         .padding()
-        .background(viewModel.isCopied
+        .background(isCopied
                     ? Color.secondaryDefault.opacity(0.1)
                     : Color.surfacesBackground2
         )
         .clipShape(RoundedRectangle(cornerRadius: 48))
         .overlay(
             RoundedRectangle(cornerRadius: 48)
-                .stroke(viewModel.isCopied ? Color.secondaryDefault : Color.clear, lineWidth: 1)
+                .stroke(isCopied ? Color.secondaryDefault : Color.clear, lineWidth: 1)
         )
     }
     
@@ -72,13 +77,13 @@ struct InviteCodeTextSUView: View {
     }
     
     func inviteCodeLabel() -> some View {
-        Text(viewModel.inviteCode ?? "")
+        Text(inviteCode)
             .font(.body)
             .foregroundStyle(.textPrimary)
     }
     
     func copyStatusIcon() -> some View {
-        Image(viewModel.isCopied ? .checkedCopyIcon : .uncheckedCopyIcon)
+        Image(isCopied ? .checkedCopyIcon : .uncheckedCopyIcon)
             .resizable()
             .frame(width: 24, height: 24)
     }
